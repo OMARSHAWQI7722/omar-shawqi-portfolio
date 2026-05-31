@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects — Omar Shawqi</title>
+
+    <!-- Fonts are now loaded via @import inside style.css -->
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* ── Extra animations specific to this page ── */
+
+        /* Floating particles canvas sits behind everything */
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Pulsing glow ring on the hero headline */
+        .hero-title .glow-word {
+            display: inline-block;
+            color: var(--cyan);
+            text-shadow:
+                0 0 12px var(--cyan),
+                0 0 28px var(--cyan);
+            animation: glowPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            from { text-shadow: 0 0 10px var(--cyan), 0 0 22px var(--cyan); }
+            to   { text-shadow: 0 0 22px var(--cyan), 0 0 55px var(--cyan), 0 0 90px var(--cyan); }
+        }
+
+        /* Horizontal scan-line sweep over the whole page */
+        body::after {
+            content: "";
+            position: fixed;
+            top: -100vh;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(56, 189, 248, 0.18) 40%,
+                rgba(56, 189, 248, 0.55) 50%,
+                rgba(56, 189, 248, 0.18) 60%,
+                transparent 100%
+            );
+            animation: scanLine 7s linear infinite;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        @keyframes scanLine {
+            0%   { top: -10px; }
+            100% { top: 110vh; }
+        }
+
+        /* Counter badge showing project count */
+        .projects-count {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 30px;
+            padding: 6px 18px;
+            font-size: 0.85rem;
+            color: #38bdf8;
+            letter-spacing: 0.1em;
+            margin-bottom: 20px;
+        }
+
+        .projects-count .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 8px var(--cyan);
+            animation: blink 1.4s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.2; }
+        }
+
+        /* Typed cursor after hero tag */
+        .hero-tag::after {
+            content: "|";
+            animation: cursorBlink 1s step-end infinite;
+            margin-left: 2px;
+            color: var(--cyan);
+        }
+
+        @keyframes cursorBlink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0; }
+        }
+
+        /* Coming-soon card inner glow effect */
+        .project-card.coming-soon .card-preview {
+            background: linear-gradient(135deg, #04101e 0%, #081827 50%, #04101e 100%);
+        }
+
+        .project-card.coming-soon .card-preview::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center,
+                rgba(56, 189, 248, 0.08) 0%,
+                transparent 70%
+            );
+            z-index: 1;
+            animation: innerGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes innerGlow {
+            from { opacity: 0.5; }
+            to   { opacity: 1.0; }
+        }
+
+        /* Countdown / ETA badge on coming-soon cards */
+        .eta-badge {
+            font-size: 0.72rem;
+            color: rgba(56, 189, 248, 0.6);
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        /* Orbital ring decoration on coming-soon icon */
+        .coming-soon-icon {
+            position: relative;
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .coming-soon-icon::before {
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1.5px dashed rgba(56, 189, 248, 0.35);
+            animation: spin 6s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Particle canvas background -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- bg-animation provides animated grid & glow (from style.css) -->
+<div class="bg-animation"></div>
+
+<!-- ================================================================
+     NAVBAR
+     ================================================================ -->
+<nav class="navbar">
+    <div class="nav-logo">
+        <span class="logo-first">Omar</span>
+        <span class="logo-last">Shawqi</span>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="nav-menu">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</nav>
+
+<!-- ================================================================
+     HERO
+     ================================================================ -->
+<section class="hero projects-hero">
+    <div class="glow-left"></div>
+    <div class="glow-right"></div>
+
+    <div class="hero-content">
+        <div class="projects-count">
+            <span class="dot"></span>
+            8 Projects Showcased
+        </div>
+        <p class="hero-tag">MY WORK</p>
+        <h1 class="hero-title">
+            My <span class="glow-word">Projects</span>
+        </h1>
+        <p class="hero-sub">
+            Real-world projects across 
+            E-commerce, programming,
+            Odoo systems, and modern digital experiences.
+        </p>
+        <div class="hero-line"></div>
+    </div>
+</section>
+
+<!-- ================================================================
+     PROJECTS GRID  —  Active Projects
+     ================================================================ -->
+<section class="projects-section">
+
+    <!-- ── Divider ── -->
+    <div class="section-divider">
+        <span>Active Projects</span>
+    </div>
+
+    <div class="projects-grid">
+
+        <!-- PROJECT 1: OZO Store -->
+        <article class="project-card" data-delay="0">
+            <div class="card-preview">
+                <img src="images/ozo-store-cover.png" alt="OZO Store" class="preview-img">
+                <div class="preview-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Add image: <code>images/ozo-store-cover.png</code></span>
+                </div>
+                <div class="proj-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <circle cx="12" cy="12" r="10"/>
+                        <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">Watch Store</span>
+                <h2 class="card-title">OZO Store</h2>
+                <p class="card-desc">
+                    An online luxury watch store with modern product listing,
+                    elegant UI/UX design, and a smooth shopping experience
+                    built for premium branding.
+                </p>
+                <div class="card-btns">
+                   <a href="https://ozostore.odoo.com" target="_blank" class="btn btn-live">
+                Live Demo
+           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+               <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+              <polyline points="15 3 21 3 21 9"/>
+              <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                   </a>
+                    <a href="https://github.com/omarshawqi7722" target="_blank" class="btn btn-github">
+                        GitHub
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+
+
+        <!-- PROJECT 2: car mangament -->
+        <article class="project-card" data-delay="3">
+            <div class="card-preview">
+                <img src="images/car-store-cover.png" alt="AutoDrive Store" class="preview-img">
+                <div class="preview-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Add image: <code>images/car-store-cover.png</code></span>
+                </div>
+                <div class="proj-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v5a2 2 0 01-2 2h-2"/>
+                        <circle cx="7" cy="17" r="2"/>
+                        <circle cx="17" cy="17" r="2"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">Management System</span>
+                <h2 class="card-title">Car Supplier Management System</h2>
+                <p class="card-desc">
+                   A Java Swing desktop application that allows users to browse vehicle brands, explore car details,
+                    read customer reviews, and submit purchase requests through an interactive multi-screen interface.
+                </p>
+                <div class="card-btns">
+                    
+                    <a href="https://github.com/OMARSHAWQI7722/car-supplier-management-system" target="_blank" class="btn btn-github">
+                        GitHub
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+              <!-- PROJECT 3: Portfolio Website old (featured) -->
+         <article class="project-card featured" data-delay="4">
+            <div class="card-preview">
+                <img src="images/portfolio-cover.png" alt="Portfolio Website" class="preview-img">
+                <div class="preview-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Add image: <code>images/portfolio-cover.png</code></span>
+                </div>
+                <span class="card-badge">Personal</span>
+                <div class="proj-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <polyline points="16 18 22 12 16 6"/>
+                        <polyline points="8 6 2 12 8 18"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">Web Development</span>
+                <h2 class="card-title">Portfolio Website</h2>
+                <p class="card-desc">
+                    My old personal portfolio website built with HTML, CSS, and JavaScript.
+                    Fully responsive with smooth animations, showcasing my projects,
+                    skills, and professional journey.
+                </p>
+                <div class="card-btns">
+                    <a href="https://omarshawqi7722.github.io/personalweb/" target="_blank" class="btn btn-live">
+                        Live Demo
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </a>
+                    <a href="https://github.com/omarshawqi7722" target="_blank" class="btn btn-github">
+                        GitHub
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+
+        
+
+      
+
+        <!-- PROJECT 4: C plus plus  -->
+        <article class="project-card" data-delay="2">
+            <div class="card-preview">
+                <img src="images/odoo-cover.png" alt="Odoo Platform" class="preview-img">
+                <div class="preview-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                        <circle cx="8.5" cy="8.5" r="1.5"/>
+                        <polyline points="21 15 16 10 5 21"/>
+                    </svg>
+                    <span>Add image: <code>images/odoo-cover.png</code></span>
+                </div>
+                <div class="proj-card-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">C++ Multi-Functional Toolkit</span>
+                <h2 class="card-title">C++ Console Application</h2>
+                <p class="card-desc">
+                  A comprehensive C++ application featuring 35+ modules including mathematical calculations,
+                   string processing, data manipulation, algorithms, and interactive menu-driven navigation.
+                </p>
+                <div class="card-btns">
+                   
+                    <a href="https://github.com/OMARSHAWQI7722/Final-project" target="_blank" class="btn btn-github">
+                        GitHub
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </article>
+
+
+          <!-- PROJECT 5: Elite Vibes Store -->
+       <article class="project-card" data-delay="1">
+    <div class="card-preview">
+        <img src="images/elite-vibes-cover.png" alt="Elite Vibes Store" class="preview-img">
+
+        <div class="proj-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+                <line x1="3" y1="6" x2="21" y2="6"/>
+                <path d="M16 10a4 4 0 01-8 0"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="card-body">
+        <span class="card-tag">Digital Services Store</span>
+
+        <h2 class="card-title">Elite Vibes Store</h2>
+
+        <p class="card-desc">
+            A complete digital marketplace built with Odoo, providing premium
+            subscriptions, social media services, digital payments, virtual numbers,
+            and online solutions through a modern e-commerce experience.
+        </p>
+
+    
+        <div class="card-btns">
+
+            <a href="https://anedstore.odoo.com"
+               target="_blank"
+               class="btn btn-live">
+                Visit Store
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                </svg>
+            </a>
+
+            <a href="https://github.com/omarshawqi7722"
+               target="_blank"
+               class="btn btn-github">
+                GitHub
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.749 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                </svg>
+            </a>
+
+        </div>
+    </div>
+</article>
+
+        
+
+        
+       
+
+    </div><!-- /projects-grid -->
+
+    <!-- ================================================================
+         COMING SOON  SECTION
+         ================================================================ -->
+    <div class="section-divider">
+        <span>Coming Soon</span>
+    </div>
+
+    <div class="projects-grid">
+
+        <!-- COMING SOON 1: Smart E-Commerce Dashboard -->
+        <article class="project-card coming-soon" data-delay="5">
+            <div class="card-preview">
+                <div class="coming-soon-overlay">
+                    <div class="coming-soon-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21"/>
+                            <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                    </div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="eta-badge">ETA — Q3 2026</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">Analytics Dashboard</span>
+                <h2 class="card-title">Smart E-Commerce Dashboard</h2>
+                <p class="card-desc">
+                    A fully interactive analytics dashboard for online store owners —
+                    real-time sales tracking, revenue charts, customer insights,
+                    and product performance all in one sleek interface.
+                </p>
+                <div class="card-btns">
+                    <span class="btn btn-disabled">
+                        In Development
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </article>
+
+        <!-- COMING SOON 2: AI Resume Builder -->
+        <article class="project-card coming-soon" data-delay="6">
+            <div class="card-preview">
+                <div class="coming-soon-overlay">
+                    <div class="coming-soon-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="eta-badge">ETA — Q4 2026</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">AI-Powered Tool</span>
+                <h2 class="card-title">AI Resume Builder</h2>
+                <p class="card-desc">
+                    An intelligent resume generator that tailors professional CVs
+                    to specific job descriptions using AI — including ATS scoring,
+                    real-time suggestions, and export to PDF.
+                </p>
+                <div class="card-btns">
+                    <span class="btn btn-disabled">
+                        In Development
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </article>
+
+        <!-- COMING SOON 3: Social Media Scheduler -->
+        <article class="project-card coming-soon" data-delay="7">
+            <div class="card-preview">
+                <div class="coming-soon-overlay">
+                    <div class="coming-soon-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/>
+                        </svg>
+                    </div>
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="eta-badge">ETA — 2027</span>
+                </div>
+            </div>
+            <div class="card-body">
+                <span class="card-tag">Marketing Tool</span>
+                <h2 class="card-title">Social Media Scheduler</h2>
+                <p class="card-desc">
+                    A unified social media management platform for scheduling posts
+                    across Instagram, Facebook, and LinkedIn — with analytics,
+                    content calendar, and engagement tracking.
+                </p>
+                <div class="card-btns">
+                    <span class="btn btn-disabled">
+                        In Development
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+        </article>
+
+    </div><!-- /coming-soon grid -->
+
+    <!-- View More -->
+    <div class="view-more-wrap">
+        <a href="https://github.com/omarshawqi7722" target="_blank" class="btn-view-more">
+            View All on GitHub
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="9 18 15 12 9 6"/>
+            </svg>
+        </a>
+    </div>
+
+</section>
+
+<!-- ================================================================
+     PARTICLES JS
+     ================================================================ -->
+<script>
+(function () {
+    const canvas = document.getElementById('particles-canvas');
+    const ctx    = canvas.getContext('2d');
+    let W, H, particles = [];
+
+    function resize() {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    }
+
+    function createParticle() {
+        return {
+            x:     Math.random() * W,
+            y:     Math.random() * H,
+            r:     Math.random() * 1.5 + 0.4,
+            dx:    (Math.random() - 0.5) * 0.35,
+            dy:    -(Math.random() * 0.5 + 0.2),
+            alpha: Math.random() * 0.5 + 0.15
+        };
+    }
+
+    function init() {
+        resize();
+        particles = Array.from({ length: 90 }, createParticle);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(56,189,248,${p.alpha})`;
+            ctx.fill();
+
+            p.x += p.dx;
+            p.y += p.dy;
+
+            if (p.y < -5) { p.y = H + 5; p.x = Math.random() * W; }
+            if (p.x < -5) p.x = W + 5;
+            if (p.x > W + 5) p.x = -5;
+        });
+        requestAnimationFrame(draw);
+    }
+
+    window.addEventListener('resize', resize);
+    init();
+    draw();
+})();
+</script>
+
+<script>
+document.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", function (e) {
+        const href = this.getAttribute("href");
+        if (href && !href.startsWith("#") && !href.startsWith("http")) {
+            e.preventDefault();
+            document.body.classList.add("fade-out");
+            setTimeout(() => { window.location.href = href; }, 500);
+        }
+    });
+});
+</script>
+
+<!-- Inject extra background orbs dynamically -->
+<script>
+(function () {
+    const bg = document.querySelector('.bg-animation');
+    if (!bg) return;
+
+    const orbs = [
+        { w: 600, h: 600, color: 'rgba(14,165,233,0.18)',  blur: 90,  left: '-10%', top: '40%',  anim: 'orbFloat2', dur: '18s' },
+        { w: 500, h: 500, color: 'rgba(99,102,241,0.12)',  blur: 80,  left: '30%',  top: '60%',  anim: 'orbFloat3', dur: '22s' },
+        { w: 450, h: 450, color: 'rgba(56,189,248,0.10)',  blur: 100, left: '60%',  top: '20%',  anim: 'orbFloat1', dur: '16s' },
+        { w: 350, h: 350, color: 'rgba(34,211,238,0.08)',  blur: 70,  left: '80%',  top: '70%',  anim: 'orbFloat2', dur: '20s' }
+    ];
+
+    orbs.forEach(o => {
+        const el = document.createElement('div');
+        el.style.cssText = `
+            position:absolute;
+            width:${o.w}px; height:${o.h}px;
+            background:radial-gradient(circle, ${o.color} 0%, transparent 68%);
+            filter:blur(${o.blur}px);
+            left:${o.left}; top:${o.top};
+            animation:${o.anim} ${o.dur} ease-in-out infinite alternate;
+            pointer-events:none;
+        `;
+        bg.appendChild(el);
+    });
+})();
+</script>
+
+<script>
+/* ── HAMBURGER MENU ── */
+(function () {
+    const hamburger = document.getElementById("hamburger");
+    const navMenu   = document.getElementById("nav-menu");
+
+    if (!hamburger || !navMenu) return;
+
+    hamburger.addEventListener("click", function (e) {
+        e.stopPropagation();
+        hamburger.classList.toggle("open");
+        navMenu.classList.toggle("open");
+        document.body.style.overflow = navMenu.classList.contains("open") ? "hidden" : "";
+    });
+
+    navMenu.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", () => {
+            hamburger.classList.remove("open");
+            navMenu.classList.remove("open");
+            document.body.style.overflow = "";
+        });
+    });
+
+    document.addEventListener("click", function (e) {
+        if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
+            hamburger.classList.remove("open");
+            navMenu.classList.remove("open");
+            document.body.style.overflow = "";
+        }
+    });
+})();
+</script>
+
+</body>
+</html>

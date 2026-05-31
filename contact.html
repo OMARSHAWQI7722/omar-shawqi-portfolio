@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | Omar Shawqi</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- EmailJS -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
+
+</head>
+
+<body>
+
+<div class="bg-animation"></div>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav>
+
+     <div class="logo">
+    <span class="logo-blue">Omar</span>
+    <span class="logo-white">Shawqi</span>
+</div>
+
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+
+    <ul id="nav-menu">
+
+        <li>
+            <a href="index.html">Home</a>
+        </li>
+
+        <li>
+            <a href="about.html">About</a>
+        </li>
+
+        <li>
+            <a href="projects.html">Projects</a>
+        </li>
+
+        <li>
+            <a href="contact.html" class="active">
+                Contact
+            </a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- ================= CONTACT PAGE ================= -->
+
+<section class="contact-page">
+
+    <div class="contact-container">
+
+        <!-- TITLE -->
+
+        <div class="contact-title">
+
+            <span>Contact</span>
+
+            <h1>CONTACT ME</h1>
+
+        </div>
+
+
+        <!-- GRID -->
+
+        <div class="contact-grid">
+
+
+            <!-- ADDRESS -->
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+
+                    <i class="fas fa-location-dot"></i>
+
+                </div>
+
+                <div class="contact-info">
+
+                    <h2>My Address</h2>
+
+                    <p>Malaysia - Kedah state - Alor setar  </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- SOCIAL MEDIA -->
+
+            <div class="contact-card social-card"> 
+           
+                <!-- SHARE ICON -->
+                
+             <div class="social-header">
+
+    <div class="contact-icon">
+        <i class="fas fa-share-nodes"></i>
+    </div>
+
+    <h2>
+        Social Media
+    </h2>
+
+</div>
+
+
+                <!-- SOCIAL ICONS -->
+
+                <div class="contact-social">
+
+                    <!-- FACEBOOK -->
+
+                    <a href="https://www.facebook.com/share/17MF6jE2B3/"
+                    target="_blank"
+                    class="social-btn">
+
+                        <i class="fab fa-facebook-f"></i>
+
+                    </a>
+
+
+                    <!-- INSTAGRAM -->
+
+                    <a href="https://instagram.com/7qz_2"
+                    target="_blank"
+                    class="social-btn">
+
+                        <i class="fab fa-instagram"></i>
+
+                    </a>
+
+
+                    <!-- GITHUB -->
+
+                    <a href="https://github.com/omarshawqi7722"
+                    target="_blank"
+                    class="social-btn">
+
+                        <i class="fab fa-github"></i>
+
+                    </a>
+
+
+                    <!-- LINKEDIN -->
+
+                    <a href="https://www.linkedin.com/in/omar-shawqi-67b911262/"
+                    target="_blank"
+                    class="social-btn">
+
+                        <i class="fab fa-linkedin-in"></i>
+
+                    </a>
+
+
+                    <!-- WHATSAPP -->
+
+                    <a href="https://wa.me/967772291980"
+                    target="_blank"
+                    class="social-btn">
+
+                        <i class="fab fa-whatsapp"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+
+                    <i class="fas fa-envelope"></i>
+
+                </div>
+
+                <div class="contact-info">
+
+                    <h2>Email</h2>
+
+                    <p>7omarshawqi7@gmail.com</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PHONE -->
+
+            <div class="contact-card">
+
+                <div class="contact-icon">
+
+                    <i class="fas fa-phone-volume"></i>
+
+                </div>
+
+                <div class="contact-info">
+
+                    <h2>Contact Me</h2>
+                    <p>+60 116 225 6809   • Malaysia </p>
+                    <p>+967 772 291 980   • Yemen </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CONTACT FORM ================= -->
+<section class="contact-form-section">
+    <div class="form-container">
+
+        <div class="form-header">
+            <span>SEND MESSAGE</span>
+            <h2>Let's <span class="glow-word">Talk</span></h2>
+            <p>Fill the form and I'll get back to you as soon as possible.</p>
+        </div>
+
+        <div class="form-wrapper" id="contactForm">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="name"><i class="fas fa-user"></i> Your Name</label>
+                    <input type="text" id="name" placeholder="e.g. Ahmed Ali" autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Your Email</label>
+                    <input type="email" id="email" placeholder="e.g. ahmed@email.com" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="subject"><i class="fas fa-tag"></i> Subject</label>
+                <input type="text" id="subject" placeholder="e.g. Project Collaboration" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label for="message"><i class="fas fa-comment-dots"></i> Message</label>
+                <textarea id="message" rows="6" placeholder="Write your message here..."></textarea>
+            </div>
+
+            <button class="send-btn" id="sendBtn" onclick="sendEmail()">
+                <span id="btnText"><i class="fas fa-paper-plane"></i> Send Message</span>
+                <div class="btn-shine"></div>
+            </button>
+
+            <div class="form-status" id="formStatus"></div>
+
+        </div>
+    </div>
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
