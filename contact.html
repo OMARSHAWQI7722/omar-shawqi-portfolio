@@ -5,18 +5,26 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#020617">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <title>Contact | Omar Shawqi</title>
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- FONT AWESOME -->
+    <!-- FONT AWESOME - non-blocking -->
     <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
 
-    <!-- EmailJS -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script>emailjs.init("YOUR_PUBLIC_KEY");</script>
+    <!-- EmailJS - deferred so it doesn't block page render -->
+    <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        window.addEventListener('load', function() {
+            if (typeof emailjs !== 'undefined') emailjs.init("YOUR_PUBLIC_KEY");
+        });
+    </script>
 
 </head>
 
