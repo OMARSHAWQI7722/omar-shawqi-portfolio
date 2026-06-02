@@ -22,18 +22,19 @@ body {
     background: #020617;
     color: white;
     overflow-x: hidden;
-    animation: pageLoad 0.8s ease;
+    /* Removed heavy pageLoad transform — use opacity-only for performance */
+    animation: pageLoad 0.4s ease;
 }
 
 @keyframes pageLoad {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to   { opacity: 1; }
 }
 
+/* Faster fade-out, no scale (scale triggers layout recalc on mobile) */
 .fade-out {
     opacity: 0;
-    transform: scale(1.02);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.25s ease;
 }
 
 /* ================================================================
@@ -46,6 +47,10 @@ body {
     z-index: -1;
     overflow: hidden;
     background: radial-gradient(ellipse at 20% 50%, #040e24 0%, #020617 60%);
+    /* GPU compositing layer */
+    transform: translateZ(0);
+    will-change: transform;
+    contain: strict;
 }
 
 /* Fine moving grid */
@@ -55,29 +60,29 @@ body {
     width: 200%;
     height: 200%;
     background-image:
-        linear-gradient(rgba(56, 189, 248, 0.09) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(56, 189, 248, 0.09) 1px, transparent 1px);
+        linear-gradient(rgba(56, 189, 248, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
     background-size: 70px 70px;
     transform: rotate(45deg);
     top: -50%;
     left: -50%;
-    animation: gridMove 30s linear infinite;
+    animation: gridMove 40s linear infinite;
+    will-change: transform;
 }
 
-/* Primary top-right orb — cyan */
+/* Primary top-right orb — reduced blur for mobile */
 .bg-animation::after {
     content: "";
     position: absolute;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, transparent 65%);
-    filter: blur(70px);
-    top: -200px;
-    right: -200px;
-    animation: orbFloat1 14s ease-in-out infinite alternate;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.18) 0%, transparent 65%);
+    filter: blur(50px);
+    top: -150px;
+    right: -150px;
+    animation: orbFloat1 18s ease-in-out infinite alternate;
+    will-change: transform;
 }
-
-/* Extra orbs injected via JS — see below */
 
 @keyframes gridMove {
     0%   { transform: rotate(45deg) translate(0, 0); }
@@ -85,22 +90,18 @@ body {
 }
 
 @keyframes orbFloat1 {
-    0%   { transform: translate(0, 0) scale(1); }
-    33%  { transform: translate(-60px, 80px) scale(1.08); }
-    66%  { transform: translate(40px, 120px) scale(0.95); }
-    100% { transform: translate(-30px, 50px) scale(1.05); }
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-30px, 50px, 0) scale(1.05); }
 }
 
 @keyframes orbFloat2 {
-    0%   { transform: translate(0, 0) scale(1); }
-    50%  { transform: translate(80px, -60px) scale(1.12); }
-    100% { transform: translate(-40px, 40px) scale(0.9); }
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    100% { transform: translate3d(-40px, 40px, 0) scale(0.9); }
 }
 
 @keyframes orbFloat3 {
-    0%   { transform: translate(0, 0) scale(0.9); }
-    50%  { transform: translate(-70px, 50px) scale(1.1); }
-    100% { transform: translate(50px, -30px) scale(1.0); }
+    0%   { transform: translate3d(0, 0, 0) scale(0.9); }
+    100% { transform: translate3d(50px, -30px, 0) scale(1.0); }
 }
 
 /* ================================================================
@@ -116,9 +117,11 @@ nav {
     top: 0;
     left: 0;
     z-index: 1000;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px);
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateZ(0);
 }
 
 .logo {
@@ -167,9 +170,11 @@ nav ul li a:hover::after { width: 100%; }
     align-items: center;
     justify-content: space-between;
     padding: 25px 8%;
-    background: rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(12px);
+    background: rgba(2, 6, 23, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transform: translateZ(0);
 }
 
 .nav-logo {
@@ -221,8 +226,8 @@ nav ul li a:hover::after { width: 100%; }
    SHARED ANIMATIONS
    ================================================================ */
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(50px); }
-    to   { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translate3d(0, 30px, 0); }
+    to   { opacity: 1; transform: translate3d(0, 0, 0); }
 }
 
 @keyframes glowText {
@@ -277,7 +282,7 @@ nav ul li a:hover::after { width: 100%; }
     padding: 20px;
 }
 
-.hero-content { animation: fadeUp 1.5s ease; }
+.hero-content { animation: fadeUp 0.6s ease both; }
 
 .hero-content h1 {
     font-size: 120px;
@@ -306,18 +311,18 @@ nav ul li a:hover::after { width: 100%; }
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
     text-decoration: none;
     font-size: 30px;
-    transition: 0.4s;
-    backdrop-filter: blur(12px);
+    transition: background 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
+    /* No backdrop-filter — too heavy on mobile */
 }
 
 .social-icons a::before {
@@ -583,7 +588,7 @@ nav ul li a:hover::after { width: 100%; }
     border-radius: 50px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
+    /* Removed backdrop-filter - not visible here anyway */
 }
 
 .skill-fill {
@@ -713,14 +718,14 @@ nav ul li a:hover::after { width: 100%; }
 }
 
 .work-card {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(7, 20, 40, 0.9);
     border: 1px solid rgba(56, 189, 248, 0.15);
     border-radius: 30px;
     padding: 38px;
-    transition: 0.4s ease;
-    backdrop-filter: blur(12px);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     position: relative;
     overflow: hidden;
+    /* No backdrop-filter on cards — use solid bg instead */
 }
 
 .work-card::before {
@@ -2154,8 +2159,10 @@ html { scroll-behavior: smooth; }
         left: 0 !important;
         width: 100% !important;
         height: 100vh !important;
-        background: rgba(2, 6, 23, 0.97) !important;
-        backdrop-filter: blur(20px) !important;
+        background: rgba(2, 6, 23, 0.98) !important;
+        /* Reduced blur on mobile nav overlay */
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
         justify-content: center !important;
         align-items: center !important;
         gap: 36px !important;
@@ -2247,6 +2254,35 @@ html { scroll-behavior: smooth; }
     .card-btns { flex-direction: column !important; }
     .btn { justify-content: center !important; }
     .hero.projects-hero { padding: 6rem 5% 3rem !important; }
+
+    /* ── Mobile performance: disable heavy background grid animation ── */
+    .bg-animation::before {
+        animation: none !important;
+        opacity: 0.4 !important;
+    }
+
+    /* ── Mobile: reduce orb sizes injected by JS ── */
+    .bg-animation > div {
+        transform: scale(0.5) !important;
+        opacity: 0.6 !important;
+    }
+
+    /* ── Disable hover transforms on touch (they cause jank) ── */
+    .work-card:hover,
+    .volunteer-card:hover,
+    .skill-card:hover {
+        transform: none !important;
+    }
+
+    /* ── Tone down glow text animation on mobile ── */
+    .hero-content h1 {
+        animation: none !important;
+        text-shadow: 0 0 15px #38bdf8 !important;
+    }
+
+    /* ── Simplify skill bar shine on mobile ── */
+    .skill-fill::before { animation: none !important; }
+    .btn-shine { animation: none !important; }
 }
 
 /* ================================================================
@@ -2275,4 +2311,57 @@ html { scroll-behavior: smooth; }
     .form-wrapper { padding: 40px 36px; }
     .form-row { grid-template-columns: 1fr 1fr; }
     .available-badge { font-size: 14px; }
+}
+
+/* ================================================================
+   ACCESSIBILITY + PERFORMANCE: Reduced Motion
+   ================================================================ */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* ================================================================
+   CROSS-BROWSER FIXES
+   ================================================================ */
+
+/* Safari: fix position:fixed inside transformed elements */
+@supports (-webkit-touch-callout: none) {
+    nav {
+        /* Force hardware acceleration on Safari iOS */
+        -webkit-transform: translateZ(0);
+    }
+    .bg-animation {
+        /* Safari needs explicit -webkit-backdrop-filter */
+        -webkit-backdrop-filter: none;
+    }
+}
+
+/* Touch devices: improve tap responsiveness */
+@media (hover: none) and (pointer: coarse) {
+    /* Instant feedback on touch — no delay */
+    a, button, .main-btn, .hire-me-btn, .hero-btn, .send-btn {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2);
+    }
+
+    /* Disable shimmer/shine effects on touch devices (save CPU) */
+    .skill-fill::before,
+    .btn-shine,
+    .social-icons a::before {
+        display: none !important;
+    }
+
+    /* Disable grid animation on touch devices */
+    .bg-animation::before {
+        animation: none !important;
+    }
+
+    /* Reduce orb animation duration to save battery */
+    .bg-animation::after {
+        animation-duration: 30s !important;
+    }
 }
