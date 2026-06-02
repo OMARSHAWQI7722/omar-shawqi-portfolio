@@ -165,10 +165,11 @@ function showStatus(type, msg) {
 document.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", function (e) {
         const href = this.getAttribute("href");
-        if (href && !href.startsWith("#") && !href.startsWith("http") && !href.startsWith("mailto")) {
+        if (href && !href.startsWith("#") && !href.startsWith("http") && !href.startsWith("mailto") && !href.startsWith("tel")) {
             e.preventDefault();
             document.body.classList.add("fade-out");
-            setTimeout(() => { window.location.href = href; }, 500);
+            // Reduced from 500ms → 220ms for snappy mobile navigation
+            setTimeout(() => { window.location.href = href; }, 220);
         }
     });
 });
@@ -191,11 +192,28 @@ function injectBgOrbs() {
     const bg = document.querySelector(".bg-animation");
     if (!bg) return;
 
+    // Detect mobile/low-power devices
+    const isMobile = window.matchMedia("(hover: none) and (pointer: coarse)").matches
+                  || window.innerWidth <= 768;
+
+    // On mobile: only 1 subtle orb to save GPU
+    if (isMobile) {
+        const el = document.createElement("div");
+        el.style.cssText = `position:absolute;width:300px;height:300px;
+            background:radial-gradient(circle,rgba(14,165,233,0.10) 0%,transparent 68%);
+            filter:blur(40px);left:"-10%";top:"40%";
+            animation:orbFloat2 25s ease-in-out infinite alternate;
+            pointer-events:none;will-change:transform;`;
+        bg.appendChild(el);
+        return;
+    }
+
+    // Desktop: full orb set
     const orbs = [
-        { w:650, h:650, color:"rgba(14,165,233,0.16)",  blur:100, left:"-12%", top:"45%",  anim:"orbFloat2", dur:"18s" },
-        { w:500, h:500, color:"rgba(99,102,241,0.11)",  blur:85,  left:"28%",  top:"62%",  anim:"orbFloat3", dur:"23s" },
-        { w:420, h:420, color:"rgba(56,189,248,0.09)",  blur:95,  left:"55%",  top:"15%",  anim:"orbFloat1", dur:"15s" },
-        { w:320, h:320, color:"rgba(20,184,166,0.08)",  blur:70,  left:"78%",  top:"68%",  anim:"orbFloat2", dur:"21s" }
+        { w:500, h:500, color:"rgba(14,165,233,0.13)",  blur:80,  left:"-10%", top:"45%",  anim:"orbFloat2", dur:"22s" },
+        { w:380, h:380, color:"rgba(99,102,241,0.09)",  blur:70,  left:"28%",  top:"62%",  anim:"orbFloat3", dur:"28s" },
+        { w:320, h:320, color:"rgba(56,189,248,0.07)",  blur:80,  left:"55%",  top:"15%",  anim:"orbFloat1", dur:"20s" },
+        { w:250, h:250, color:"rgba(20,184,166,0.06)",  blur:60,  left:"78%",  top:"68%",  anim:"orbFloat2", dur:"26s" }
     ];
 
     orbs.forEach(o => {
