@@ -2,10 +2,12 @@
   const API = "https://portfolio-admin-dashboard-five.vercel.app";
 
   function getSessionId() {
-    return sessionStorage.getItem("_sid");
-  }
-  function setSessionId(id) {
-    sessionStorage.setItem("_sid", id);
+    let id = sessionStorage.getItem("_sid");
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem("_sid", id);
+    }
+    return id;
   }
 
   function trackEvent(eventType, metadata) {
@@ -14,7 +16,7 @@
       headers: { "Content-Type": "application/json" },
       keepalive: true,
       body: JSON.stringify({
-        sessionId: getSessionId() || undefined,
+        sessionId: getSessionId(),
         eventType: eventType,
         metadata: metadata || {},
       }),
@@ -26,18 +28,14 @@
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      id: getSessionId(),
       entryPage: location.pathname,
       referrer: document.referrer || "direct",
       screenResolution: screen.width + "x" + screen.height,
       language: navigator.language,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
     }),
-  })
-    .then(function (r) { return r.json(); })
-    .then(function (data) {
-      if (data && data.sessionId) setSessionId(data.sessionId);
-    })
-    .catch(function () {});
+  }).catch(function () {});
 
   // 2. Auto-detect and track link clicks by their destination
   document.addEventListener("click", function (e) {
@@ -59,8 +57,7 @@
     }
   });
 
-  // 3. Track contact form submission (runs alongside whatever the form
-  // already does — does not block or change its normal behavior)
+  // 3. Track contact form submission
   document.addEventListener("submit", function (e) {
     const form = e.target;
     if (!(form instanceof HTMLFormElement)) return;
