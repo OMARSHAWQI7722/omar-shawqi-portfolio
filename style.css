@@ -1784,6 +1784,55 @@ html { scroll-behavior: smooth; }
 }
 
 /* ================================================================
+   MY PROJECTS BUTTON
+   (same pill/glow language as .hire-me-btn, distinct violet accent
+   so it reads as its own call-to-action without clashing with the
+   cyan / orange buttons already in the CTA row)
+   ================================================================ */
+.projects-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 44px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #8b5cf6, #6366f1);
+    color: white;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    transition: 0.4s ease;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.45), 0 0 60px rgba(99, 102, 241, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.projects-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #a78bfa, #818cf8);
+    opacity: 0;
+    transition: 0.4s;
+    border-radius: 50px;
+}
+
+.projects-btn:hover::before { opacity: 1; }
+
+.projects-btn:hover {
+    transform: translateY(-5px) scale(1.06);
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.75), 0 0 80px rgba(99, 102, 241, 0.35);
+}
+
+.projects-icon {
+    font-size: 18px;
+    position: relative;
+    z-index: 1;
+}
+
+.projects-btn span { position: relative; z-index: 1; }
+
+/* ================================================================
    AVAILABLE FOR WORK BADGE
    ================================================================ */
 .available-badge {
@@ -2195,6 +2244,7 @@ html { scroll-behavior: smooth; }
     .hero-sub-rotate { font-size: 14px !important; padding: 0 10px; }
     .hero-cta-row { flex-direction: column !important; align-items: center !important; gap: 14px !important; }
     .hire-me-btn { font-size: 18px !important; padding: 16px 38px !important; width: 90% !important; max-width: 280px !important; justify-content: center !important; }
+    .projects-btn { font-size: 18px !important; padding: 16px 38px !important; width: 90% !important; max-width: 280px !important; justify-content: center !important; }
     .main-btn { display: block !important; width: 90% !important; max-width: 280px !important; margin: 0 auto !important; text-align: center !important; }
 
     .social-icons { flex-wrap: wrap !important; gap: 16px !important; justify-content: center; }
@@ -2293,6 +2343,7 @@ html { scroll-behavior: smooth; }
     .available-badge { font-size: 12px !important; padding: 9px 16px !important; }
     .hero-headline { font-size: clamp(28px, 8vw, 38px) !important; }
     .hire-me-btn { font-size: 17px !important; padding: 15px 30px !important; }
+    .projects-btn { font-size: 17px !important; padding: 15px 30px !important; }
     .form-wrapper { padding: 22px 14px !important; }
     .social-btn { width: 50px !important; height: 50px !important; font-size: 20px !important; }
     .contact-title h1 { font-size: 34px !important; }
@@ -2308,6 +2359,7 @@ html { scroll-behavior: smooth; }
 @media (min-width: 769px) and (max-width: 1024px) {
     .hero-headline { font-size: clamp(52px, 7vw, 80px); }
     .hire-me-btn { font-size: 18px; padding: 16px 36px; }
+    .projects-btn { font-size: 18px; padding: 16px 36px; }
     .form-wrapper { padding: 40px 36px; }
     .form-row { grid-template-columns: 1fr 1fr; }
     .available-badge { font-size: 14px; }
@@ -2343,7 +2395,7 @@ html { scroll-behavior: smooth; }
 /* Touch devices: improve tap responsiveness */
 @media (hover: none) and (pointer: coarse) {
     /* Instant feedback on touch — no delay */
-    a, button, .main-btn, .hire-me-btn, .hero-btn, .send-btn {
+    a, button, .main-btn, .hire-me-btn, .projects-btn, .hero-btn, .send-btn {
         touch-action: manipulation;
         -webkit-tap-highlight-color: rgba(56, 189, 248, 0.2);
     }
