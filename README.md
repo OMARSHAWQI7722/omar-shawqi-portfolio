@@ -79,7 +79,7 @@ portfolio/
 ## 🚀 Getting Started
 
 ### View Online
-👉 [https://omarshawqi7722.github.io/personalweb/](https://omarshawqi7722.github.io/personalweb/)
+👉 [https://omarshawqi7722.github.io/personalweb/](https://omarshawqi7722.github.io/omar-shawqi-portfolio/)
 
 ### Run Locally
 
