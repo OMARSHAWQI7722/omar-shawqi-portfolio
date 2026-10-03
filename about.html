@@ -4,385 +4,349 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#020617">
+    <meta name="description" content="Omar Shawqi — Computer Science student at Albukhary International University, developer, and founder of Elite Vibes and OZO Store.">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <title>About Me | Omar Shawqi</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="refresh.css">
 
     <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
     media="print" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"></noscript>
-
 </head>
 
-<body>
+<body class="page-about">
 
-<div class="bg-animation"></div>
+<div class="bg-animation"><div class="aurora-layer"></div></div>
 
 <!-- NAVBAR -->
-
 <nav>
-
     <div class="logo">
-    <span class="logo-blue">Omar</span>
-    <span class="logo-white">Shawqi</span>
-</div>
+        <span class="logo-blue">Omar</span>
+        <span class="logo-white">Shawqi</span>
+    </div>
 
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
     </button>
 
     <ul id="nav-menu">
-
         <li><a href="index.html">Home</a></li>
-
-        <li><a href="about.html">About</a></li>
-
+        <li><a href="about.html" class="active" aria-current="page">About</a></li>
+        <li><a href="#certifications">Certificates</a></li>
         <li><a href="projects.html">Projects</a></li>
-
         <li><a href="contact.html">Contact</a></li>
-
     </ul>
-
 </nav>
 
+<main>
 
-<!-- ABOUT -->
+<!-- ================= INTRO ================= -->
+<section class="ab-intro">
 
-<section class="about-page">
+    <div class="ab-portrait" data-parallax>
+        <div class="ab-orbit ab-orbit--outer"><span></span></div>
+        <div class="ab-orbit ab-orbit--inner"><span></span></div>
 
-    <div class="about-container">
+        <div class="ab-frame">
+            <div class="ab-frame-glow" aria-hidden="true"></div>
+            <div class="ab-frame-border" aria-hidden="true"></div>
+            <img src="images/omar-photo.jpg" alt="Portrait of Omar Shawqi" class="ab-photo" width="1254" height="1254">
+            <div class="ab-frame-shine" aria-hidden="true"></div>
+        </div>
 
-        <h1>
-            About Me
-        </h1>
+        <div class="ab-chip ab-chip--a" data-depth="18"><i class="fas fa-graduation-cap"></i> CS student · AIU</div>
+        <div class="ab-chip ab-chip--b" data-depth="28"><i class="fas fa-code"></i> Developer</div>
+        <div class="ab-chip ab-chip--c" data-depth="12"><i class="fas fa-rocket"></i> Founder</div>
+    </div>
 
-        <h2>
-            Know About Me
-        </h2>
+    <div class="ab-intro-text">
+        <p class="ab-kicker" data-reveal>About me</p>
+        <h1 data-reveal>I build with code, and I build businesses.</h1>
+        <p class="ab-lede" data-reveal>
+            I'm Omar Shawqi, a Computer Science student at Albukhary International University in Malaysia,
+            passionate about web development, digital business, and modern technology solutions.
+            I combine programming, marketing, and entrepreneurship to build creative online projects
+            and impactful digital experiences.
+        </p>
 
-        <p>
-    I'm Omar Shawqi, a Computer Science student at Albukhary International University in Malaysia passionate about web development, digital business, and modern technology solutions.
-    I combine programming, marketing, and entrepreneurship to build creative online projects and impactful digital experiences.
-</p>
+        <ul class="ab-facts" data-reveal>
+            <li><i class="fas fa-location-dot"></i> Alor Setar, Kedah, Malaysia</li>
+            <li><i class="fas fa-building-columns"></i> Albukhary International University</li>
+            <li><i class="fas fa-language"></i> Arabic (native) · English (IELTS Academic)</li>
+            <li><span class="ab-live-dot"></span> Open to internships &amp; collaborations</li>
+        </ul>
 
-                   <!-- HERO BUTTONS -->
+        <div class="ab-actions" data-reveal>
+            <a href="#cv-section" class="o-btn o-btn--primary"><i class="fas fa-download"></i> Download CV</a>
+            <a href="#work" class="o-btn o-btn--ghost">Experience</a>
+            <a href="#volunteer" class="o-btn o-btn--ghost">Volunteering</a>
+            <a href="#certifications" class="o-btn o-btn--ghost">Certificates</a>
+        </div>
+    </div>
 
-<div class="hero-buttons">
+</section>
 
-   <a href="#work" class="hero-btn work-btn">
-    Work Experience
-</a>
-   
+<!-- ================= PROFILE ================= -->
+<section class="ab-profile o-section" aria-labelledby="profile-title">
 
-    <a href="#volunteer" class="hero-btn">
-        Volunteer
-    </a>
+    <div class="o-head" data-reveal>
+        <p class="o-kicker">Profile</p>
+        <h2 id="profile-title">Who I am</h2>
+    </div>
 
-    <a href="#cv-section" class="hero-btn cv-btn">
-        Download CV
-    </a>
+    <div class="ab-profile-grid" data-reveal-group>
 
-</div>
+        <article class="ab-panel ab-panel--lead o-spot">
+            <h3>Computer Science, with a founder's mindset</h3>
+            <p>
+                I'm a Computer Science student with interests in software development, AI,
+                web development, entrepreneurship, and digital marketing. Alongside my studies,
+                I founded and ran my own online stores, worked with clients across Yemen and Egypt,
+                and now contribute to AI model training as a contracted Data Trainer.
+            </p>
+        </article>
+
+        <article class="ab-panel o-spot">
+            <h3>What I care about</h3>
+            <ul class="ab-values">
+                <li><i class="fas fa-check"></i> Building useful technology</li>
+                <li><i class="fas fa-check"></i> Learning continuously</li>
+                <li><i class="fas fa-check"></i> Turning ideas into real projects</li>
+                <li><i class="fas fa-check"></i> Entrepreneurship and innovation</li>
+                <li><i class="fas fa-check"></i> Community impact</li>
+                <li><i class="fas fa-check"></i> Bridging technology and business</li>
+            </ul>
+        </article>
+
+        <article class="ab-panel o-spot">
+            <h3>What I'm looking for</h3>
+            <p>
+                I am open to internships, technology opportunities, software projects, freelance
+                collaborations, entrepreneurship opportunities, volunteering, student initiatives,
+                international organizations, and innovative projects.
+            </p>
+            <a href="contact.html" class="o-link">Get in touch <i class="fas fa-arrow-right"></i></a>
+        </article>
+
+    </div>
+
+    <dl class="ab-stats" data-reveal-group>
+        <div class="ab-stat"><dt>Ventures founded</dt><dd data-count="3">3</dd><span>Elite Vibes, OZO Store, Next Stack</span></div>
+        <div class="ab-stat"><dt>Portfolio projects</dt><dd data-count="10">10</dd><span>Software, web, and e-commerce</span></div>
+        <div class="ab-stat"><dt>Certificates</dt><dd data-count="15">15</dd><span>Technology, data, design, business, and languages</span></div>
+        <div class="ab-stat"><dt>Volunteer programs</dt><dd data-count="4">4</dd><span>Including UNICEF and Red Crescent</span></div>
+    </dl>
+
+</section>
 
 <!-- ================= WORK EXPERIENCE ================= -->
+<section id="work" class="xp o-section" aria-labelledby="work-title">
 
-<section id="work" class="work-section">
-
-    <div class="work-heading">
-
-        <span>
-            EXPERIENCE
-        </span>
-
-        <h2>
-            Work Experience
-        </h2>
-
+    <div class="o-head" data-reveal>
+        <p class="o-kicker">Experience</p>
+        <h2 id="work-title">Work experience</h2>
+        <p class="o-sub">From front-end training to AI data work, with two businesses I founded along the way.</p>
     </div>
 
+    <div class="xp-wrap">
+    <span class="xp-rail" aria-hidden="true"><span class="xp-rail-fill"></span></span>
+    <ol class="xp-timeline">
 
-    <div class="work-grid">
-
-        <!-- THIRD EYE -->
-
-        <div class="work-card">
-
-            <div class="work-icon">
-                <i class="fas fa-code"></i>
+        <!-- SME Solutions Inc -->
+        <li class="xp-item xp-item--current" data-reveal>
+            <div class="xp-logo"><img src="images/logos/sme-logo.webp" alt="SME Careers logo" loading="lazy"></div>
+            <div class="xp-body o-spot">
+                <div class="xp-meta">
+                    <time>2026 — Present</time>
+                    <span class="xp-badge xp-badge--live"><span class="ab-live-dot"></span> Active contract</span>
+                </div>
+                <h3>SME Solutions Inc</h3>
+                <p class="xp-role">Data Trainer — AI Content Development</p>
+                <p>Working under contract as a Data Trainer, developing and improving AI-generated content by evaluating outputs, writing high-quality reference responses, and refining datasets used to train and fine-tune AI models.</p>
+                <ul class="xp-tags"><li>Contract</li><li>Remote</li><li>AI training data</li></ul>
             </div>
+        </li>
 
-            <div class="work-date">
-                Sep 2023 — Feb 2024
+        <!-- ARVIL Group -->
+        <li class="xp-item" data-reveal>
+            <div class="xp-logo xp-logo--dark"><img src="images/logos/arvil-group-logo.jpg" alt="ARVIL Group logo" loading="lazy"></div>
+            <div class="xp-body o-spot">
+                <div class="xp-meta"><time>2025 — 2026</time></div>
+                <h3>ARVIL Group</h3>
+                <p class="xp-role">Sales &amp; Marketing Intermediary</p>
+                <p>Worked as a communication and marketing intermediary by attracting students, coordinating registrations, handling payments, and building client relationships across Yemen and Egypt.</p>
+                <ul class="xp-tags"><li>Sales</li><li>Client relations</li><li>Yemen · Egypt</li></ul>
             </div>
+        </li>
 
-            <h3>
-                Third Eye Academic
-            </h3>
-
-            <h4>
-                Programming Trainee
-            </h4>
-
-            <p>
-                Completed an intensive training program focused on HTML, CSS, and JavaScript while building modern front-end development foundations and practical coding skills.
-            </p>
-
-        </div>
-
-
-        <!-- ARVIL -->
-
-        <div class="work-card">
-
-            <div class="work-icon">
-                <i class="fas fa-building"></i>
+        <!-- OZO Store -->
+        <li class="xp-item" data-reveal>
+            <div class="xp-logo"><img src="images/logos/ozo-store-logo.jpg" alt="OZO Store logo" loading="lazy"></div>
+            <div class="xp-body o-spot">
+                <div class="xp-meta">
+                    <time>2025 — 2026</time>
+                    <span class="xp-badge">Founder</span>
+                </div>
+                <h3>OZO Store</h3>
+                <p class="xp-role">Online watch store</p>
+                <p>Built and managed an online watch store including branding, customer service, marketing campaigns, and product promotion.</p>
+                <ul class="xp-tags"><li>E-commerce</li><li>Branding</li><li>Meta Ads</li></ul>
             </div>
+        </li>
 
-            <div class="work-date">
-                2025 — 2026
+        <!-- Elite Vibes -->
+        <li class="xp-item" data-reveal>
+            <div class="xp-logo"><img src="images/logos/elite-vibes-logo.jpg" alt="Elite Vibes logo" loading="lazy"></div>
+            <div class="xp-body o-spot">
+                <div class="xp-meta">
+                    <time>2024 — 2026</time>
+                    <span class="xp-badge">Founder</span>
+                </div>
+                <h3>Elite Vibes</h3>
+                <p class="xp-role">Digital services store</p>
+                <p>Founded and managed a digital services brand focused on online solutions, branding, social media growth, and customer communication.</p>
+                <ul class="xp-tags"><li>Digital services</li><li>Social media growth</li><li>Odoo</li></ul>
             </div>
+        </li>
 
-            <h3>
-                Arvil Company
-            </h3>
-
-            <h4>
-                Sales & Marketing Intermediary
-            </h4>
-
-            <p>
-                Worked as a communication and marketing intermediary by attracting students, coordinating registrations, handling payments, and building client relationships across Yemen and Egypt.
-            </p>
-
-        </div>
-
-
-        <!-- ELITE VIBES -->
-
-        <div class="work-card">
-
-            <div class="work-icon">
-                <i class="fas fa-gem"></i>
+        <!-- Third Eye Academic -->
+        <li class="xp-item" data-reveal>
+            <div class="xp-logo"><img src="images/logos/third-eye-logo.jpg" alt="Third Eye Academic logo" loading="lazy"></div>
+            <div class="xp-body o-spot">
+                <div class="xp-meta"><time>Sep 2023 — Feb 2024</time></div>
+                <h3>Third Eye Academic</h3>
+                <p class="xp-role">Programming Trainee</p>
+                <p>Completed an intensive training program focused on HTML, CSS, and JavaScript while building modern front-end development foundations and practical coding skills.</p>
+                <ul class="xp-tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
             </div>
-
-            <div class="work-date">
-                Founder
-            </div>
-
-            <h3>
-                Elite Vibes
-            </h3>
-
-            <h4>
-                Digital Services Store
-            </h4>
-
-            <p>
-                Founded and managed a digital services brand focused on online solutions, branding, social media growth, and customer communication.
-            </p>
-
-        </div>
-
-
-        <!-- OZO STORE -->
-
-        <div class="work-card">
-
-            <div class="work-icon">
-              <i class="fas fa-clock"></i>
-            </div>
-
-            <div class="work-date">
-                Founder
-            </div>
-
-            <h3>
-                OZO Store
-            </h3>
-
-            <h4>
-                Watch Store Management
-            </h4>
-
-            <p>
-                Built and managed an online watch store including branding, customer service, marketing campaigns, and product promotion.
-            </p>
-
-        </div>
-
+        </li>
+    </ol>
     </div>
 
 </section>
-       
-<!-- ================= VOLUNTEER EXPERIENCE ================= -->
 
-<section id="volunteer" class="volunteer-section">
+<!-- ================= VOLUNTEERING ================= -->
+<section id="volunteer" class="vol o-section" aria-labelledby="vol-title">
 
-    <div class="volunteer-header">
-
-        <span>COMMUNITY & VOLUNTEERING</span>
-
-        <h2>Volunteer Experience</h2>
-
-        <p>
-            Community engagement, humanitarian activities,
-            leadership workshops, and volunteer initiatives.
-        </p>
-
+    <div class="o-head" data-reveal>
+        <p class="o-kicker">Community</p>
+        <h2 id="vol-title">Volunteering</h2>
+        <p class="o-sub">Humanitarian work, child protection training, relief programs, and youth education.</p>
     </div>
 
-    <div class="volunteer-grid">
+    <div class="vol-grid" data-reveal-group>
 
-        <!-- UNICEF -->
-
-        <div class="volunteer-card">
-
-            <div class="volunteer-icon">
-                <i class="fas fa-earth-americas"></i>
+        <article class="vol-card o-spot">
+            <div class="vol-logo"><img src="images/logos/red-crescent.svg" alt="Red Crescent emblem" loading="lazy"></div>
+            <div class="vol-text">
+                <time>Since late 2025</time>
+                <h3>Red Crescent</h3>
+                <p class="vol-role">Member · Humanitarian activities</p>
+                <p>Active member interested in humanitarian work, volunteer campaigns, emergency response activities, and future community initiatives.</p>
             </div>
+        </article>
 
-            <div class="volunteer-date">
-                Sep 2023 - Nov 2023
+        <article class="vol-card o-spot">
+            <div class="vol-logo vol-logo--wide"><img src="images/logos/unicef-logo.svg" alt="UNICEF logo" loading="lazy"></div>
+            <div class="vol-text">
+                <time>Sep 2023 — Nov 2023</time>
+                <h3>UNICEF Training Programs</h3>
+                <p class="vol-role">Community &amp; child protection</p>
+                <p>Completed UNICEF certified training focused on community engagement, child protection systems, and emergency humanitarian awareness.</p>
             </div>
+        </article>
 
-            <h3>UNICEF Training Programs</h3>
-
-            <h4>Community & Child Protection</h4>
-
-            <p>
-                Completed UNICEF certified training focused on
-                community engagement, child protection systems,
-                and emergency humanitarian awareness.
-            </p>
-
-        </div>
-
-
-        <!-- RELIEF PROGRAM -->
-
-        <div class="volunteer-card">
-
-            <div class="volunteer-icon">
-                <i class="fas fa-hand-holding-heart"></i>
+        <article class="vol-card o-spot">
+            <div class="vol-logo vol-logo--icon" aria-hidden="true"><i class="fas fa-hand-holding-heart"></i></div>
+            <div class="vol-text">
+                <time>Aug 2022 — Aug 2023</time>
+                <h3>Relief Volunteer Program</h3>
+                <p class="vol-role">Aghabirah &amp; Al Arouk Social Welfare Association</p>
+                <p>Participated in volunteer activities supporting displaced families and humanitarian relief programs while building communication and teamwork skills.</p>
             </div>
+        </article>
 
-            <div class="volunteer-date">
-                Aug 2022 - Aug 2023
+        <article class="vol-card o-spot">
+            <div class="vol-logo vol-logo--icon" aria-hidden="true"><i class="fas fa-seedling"></i></div>
+            <div class="vol-text">
+                <time>Jan 2023</time>
+                <h3>Forsat Hayat Foundation</h3>
+                <p class="vol-role">Community &amp; educational volunteer</p>
+                <p>Participated in educational and community initiatives, supported youth activities, and demonstrated leadership, integrity, and strong passion for learning and development.</p>
             </div>
-
-            <h3>Relief Volunteer Program</h3>
-
-            <h4> Aghabirah & Al Arouk Social Welfare Association</h4>
-
-            <p>
-                Participated in volunteer activities supporting
-                displaced families and humanitarian relief programs
-                while building communication and teamwork skills.
-            </p>
-
-        </div>
-
-
-        <!--FORSAT HAYAT VOLUNTEER  -->
-
-        <div class="volunteer-card">
-
-            <div class="volunteer-icon">
-                <i class="fas fa-users"></i>
-            </div>
-
-            <div class="volunteer-date">
-                Jan 2023
-            </div>
-
-            <h3>Forsat Hayat Foundation</h3>
-
-            <h4>Community & Educational Volunteer</h4>
-
-            <p>
-                Participated in educational and community initiatives,
-        supported youth activities, and demonstrated leadership,
-        integrity, and strong passion for learning and development.
-            </p>
-
-        </div>
-
-
-        <!-- RED CRESCENT -->
-
-        <div class="volunteer-card">
-
-            <div class="volunteer-icon">
-                <i class="fas fa-user-group"></i>
-            </div>
-
-            <div class="volunteer-date">
-                Since Late 2025
-            </div>
-
-            <h3>Red Crescent Member</h3>
-
-            <h4>Humanitarian Activities</h4>
-
-            <p>
-                Active member interested in humanitarian work,
-                volunteer campaigns, emergency response activities,
-                and future community initiatives.
-            </p>
-
-        </div>
+        </article>
 
     </div>
 
 </section>
 
+<!-- ================= CERTIFICATES ================= -->
+<section id="certifications" class="cert o-section" aria-labelledby="cert-title">
+
+    <div class="o-head" data-reveal>
+        <p class="o-kicker">Learning</p>
+        <h2 id="cert-title">Certificates</h2>
+        <p class="o-sub">Courses and recognitions across technology, data, design, business, languages, and community work.</p>
+    </div>
+
+    <div class="o-filters" role="tablist" aria-label="Filter certificates by category" data-reveal>
+        <span class="o-filters-pill" aria-hidden="true"></span>
+        <button class="o-filter is-active" role="tab" aria-selected="true" data-cert-filter="all">All</button>
+        <button class="o-filter" role="tab" aria-selected="false" data-cert-filter="technology">Technology</button>
+        <button class="o-filter" role="tab" aria-selected="false" data-cert-filter="data">Data</button>
+        <button class="o-filter" role="tab" aria-selected="false" data-cert-filter="design">Design &amp; marketing</button>
+        <button class="o-filter" role="tab" aria-selected="false" data-cert-filter="business">Business</button>
+        <button class="o-filter" role="tab" aria-selected="false" data-cert-filter="language">Languages</button>
+        <button class="o-filter" role="tab" aria-selected="false" data-cert-filter="community">Community</button>
+    </div>
+
+    <div class="cert-grid-x" id="cert-grid"><!-- rendered by script.js --></div>
+
+</section>
+
+<!-- Certificate viewer -->
+<div class="cv-modal" id="cert-modal" role="dialog" aria-modal="true" aria-labelledby="cert-modal-title" hidden>
+    <div class="cv-modal-backdrop" data-close></div>
+    <div class="cv-modal-panel">
+        <header class="cv-modal-head">
+            <div>
+                <h3 id="cert-modal-title"></h3>
+                <p id="cert-modal-org"></p>
+            </div>
+            <button class="cv-modal-close" data-close aria-label="Close certificate"><i class="fas fa-xmark"></i></button>
+        </header>
+        <div class="cv-modal-stage" id="cert-modal-stage"></div>
+        <footer class="cv-modal-foot">
+            <button class="cv-nav" id="cert-prev" aria-label="Previous certificate"><i class="fas fa-chevron-left"></i></button>
+            <span id="cert-modal-count"></span>
+            <a id="cert-modal-link" class="o-btn o-btn--primary o-btn--sm" target="_blank" rel="noopener"></a>
+            <button class="cv-nav" id="cert-next" aria-label="Next certificate"><i class="fas fa-chevron-right"></i></button>
+        </footer>
+    </div>
 </div>
+
 <!-- ================= CV SECTION ================= -->
-
-<section id="cv-section" class="cv-section">
-
-    <div class="cv-container">
-
-        <span>
-            MY RESUME
-        </span>
-
-        <h2>
-            Download CV
-        </h2>
-
-        <p>
-            Choose your preferred CV version.
-        </p>
-
-        <div class="cv-buttons">
-
-            <a href="https://drive.google.com/file/d/1i85Rg5xMcmeoHHpS-Fsw4YusQt8aVeJi/view?usp=drive_link"
-            download
-            class="main-btn">
-
-                Download CV English
-
-            </a>
-
-            <a href="https://drive.google.com/file/d/1hweKn7cTZ2HvL1-ZVxnx6rxiwaG3Mkc5/view?usp=sharing"
-            download
-            class="main-btn second-btn">
-
-                Download CV Arabic
-
-            </a>
-
+<section id="cv-section" class="ab-cv o-section" aria-labelledby="cv-title">
+    <div class="ab-cv-card o-spot" data-reveal>
+        <div>
+            <h2 id="cv-title">Download my CV</h2>
+            <p>Available in English and Arabic.</p>
         </div>
-
+        <div class="ab-cv-actions">
+            <a href="https://drive.google.com/file/d/1i85Rg5xMcmeoHHpS-Fsw4YusQt8aVeJi/view?usp=drive_link" target="_blank" rel="noopener" class="o-btn o-btn--primary"><i class="fas fa-file-arrow-down"></i> CV — English</a>
+            <a href="https://drive.google.com/file/d/1hweKn7cTZ2HvL1-ZVxnx6rxiwaG3Mkc5/view?usp=sharing" target="_blank" rel="noopener" class="o-btn o-btn--ghost"><i class="fas fa-file-arrow-down"></i> CV — Arabic</a>
+        </div>
     </div>
-
 </section>
+
+</main>
+
 <script src="script.js"></script>
-    
+<script src="motion.js"></script>
 <script src="tracking.js"></script>
 </body>
 </html>
