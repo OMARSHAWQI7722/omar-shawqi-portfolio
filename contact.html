@@ -11,6 +11,7 @@
     <title>Contact | Omar Shawqi</title>
 
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="refresh.css">
 
     <!-- FONT AWESOME - non-blocking -->
     <link rel="stylesheet"
@@ -28,9 +29,9 @@
 
 </head>
 
-<body>
+<body class="page-contact">
 
-<div class="bg-animation"></div>
+<div class="bg-animation"><div class="aurora-layer"></div></div>
 
 <!-- ================= NAVBAR ================= -->
 
@@ -56,6 +57,10 @@
         </li>
 
         <li>
+            <a href="about.html#certifications">Certificates</a>
+        </li>
+
+        <li>
             <a href="projects.html">Projects</a>
         </li>
 
@@ -78,7 +83,7 @@
 
         <!-- TITLE -->
 
-        <div class="contact-title">
+        <div class="contact-title" data-reveal>
 
             <span>Contact</span>
 
@@ -89,7 +94,7 @@
 
         <!-- GRID -->
 
-        <div class="contact-grid">
+        <div class="contact-grid" data-reveal-group>
 
 
             <!-- ADDRESS -->
@@ -106,7 +111,7 @@
 
                     <h2>My Address</h2>
 
-                    <p>Malaysia - Kedah state - Alor setar  </p>
+                    <p>Alor Setar, Kedah, Malaysia</p>
 
                 </div>
 
@@ -209,7 +214,7 @@
 
                     <h2>Email</h2>
 
-                    <p>7omarshawqi7@gmail.com</p>
+                    <p><a href="mailto:7omarshawqi7@gmail.com">7omarshawqi7@gmail.com</a></p>
 
                 </div>
 
@@ -229,8 +234,8 @@
                 <div class="contact-info">
 
                     <h2>Contact Me</h2>
-                    <p>+60 116 225 6809   • Malaysia </p>
-                    <p>+967 772 291 980   • Yemen </p>
+                    <p><a href="tel:+601162256809">+60 116 225 6809</a> · Malaysia</p>
+                    <p><a href="tel:+967772291980">+967 772 291 980</a> · Yemen</p>
 
                 </div>
 
@@ -244,7 +249,7 @@
 
 <!-- ================= CONTACT FORM ================= -->
 <section class="contact-form-section">
-    <div class="form-container">
+    <div class="form-container" data-reveal>
 
         <div class="form-header">
             <span>SEND MESSAGE</span>
@@ -287,6 +292,7 @@
 </section>
 
 <script src="script.js"></script>
+<script src="motion.js"></script>
 <script src="tracking.js"></script>
 </body>
 </html>
