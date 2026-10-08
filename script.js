@@ -241,6 +241,15 @@ function injectBgOrbs() {
 
     const certsData = [
         /* ── Technology ── */
+        { category: "technology", skill: "AI fundamentals", name: "Introduction to AI", org: "Google · Coursera", year: "2026",
+          desc: "Google's foundational course on artificial intelligence and how it is used in everyday work.",
+          image: "certificates/google-intro-to-ai.jpg", verify: "https://coursera.org/verify/T8UUZX3IT0LW" },
+        { category: "technology", skill: "AI productivity", name: "Maximize Productivity With AI Tools", org: "Google · Coursera", year: "2026",
+          desc: "Using AI tools to work faster and more effectively.",
+          image: "certificates/google-ai-productivity.jpg", verify: "https://coursera.org/verify/77D750PG24YM" },
+        { category: "technology", skill: "AI automation", name: "Claude Cowork, Skills and Plugins for Workflow Automation", org: "Dr. Ryan Ahmed · Coursera", year: "2026",
+          desc: "Automating workflows with Claude Cowork, Skills, and plugins.",
+          image: "certificates/claude-cowork-automation.jpg", verify: "https://coursera.org/verify/WDPDMFI589UO" },
         { category: "technology", skill: "Web development", name: "HTML, CSS, and JavaScript for Web Developers", org: "Johns Hopkins University · Coursera", year: "2025",
           desc: "Front-end fundamentals for building web pages with HTML, CSS, and JavaScript.",
           verify: "https://coursera.org/verify/HDDPVY1H7BAQ" },
@@ -258,6 +267,9 @@ function injectBgOrbs() {
           image: "certificates/programming-camp.jpg" },
 
         /* ── Data ── */
+        { category: "data", skill: "Data analytics", name: "Foundations: Data, Data, Everywhere", org: "Google · Coursera", year: "2026",
+          desc: "The first course of Google's Data Analytics program, covering the fundamentals of data analysis.",
+          image: "certificates/google-data-foundations.jpg", verify: "https://coursera.org/verify/TTPBP2X5R7HU" },
         { category: "data", skill: "Spreadsheets", name: "Work Smarter with Microsoft Excel", org: "Microsoft · Coursera", year: "2023",
           desc: "Using Excel to organise, calculate, and analyse data more efficiently.",
           image: "certificates/excel-microsoft.jpg", verify: "https://coursera.org/verify/JHPTBDTLMZKX" },

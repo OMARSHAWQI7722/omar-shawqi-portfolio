@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Temporary AIU Shop mark (dark red) — replace when the final logo is ready -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#9b1c1c"/>
+      <stop offset="0.55" stop-color="#6b1010"/>
+      <stop offset="1" stop-color="#3f0808"/>
+    </linearGradient>
+    <linearGradient id="bag" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#f3e3e3"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <rect x="10" y="10" width="492" height="492" rx="104" fill="none" stroke="#ffffff" stroke-opacity="0.12" stroke-width="4"/>
+  <!-- bag handle -->
+  <path d="M196 196 V166 a60 60 0 0 1 120 0 V196" fill="none" stroke="#ffffff" stroke-width="26" stroke-linecap="round"/>
+  <!-- bag body -->
+  <path d="M132 196 H380 L366 398 a26 26 0 0 1 -26 24 H172 a26 26 0 0 1 -26 -24 Z" fill="url(#bag)"/>
+  <text x="256" y="350" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="104" letter-spacing="-2" fill="#7a1212">AIU</text>
+</svg>
