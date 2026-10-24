@@ -241,6 +241,9 @@ function injectBgOrbs() {
 
     const certsData = [
         /* ── Technology ── */
+        { category: "technology", skill: "AI fluency", name: "Claude 101", org: "Anthropic · Claude Academy", year: "2026",
+          desc: "Anthropic's course completion badge on working effectively with Claude for everyday tasks.",
+          image: "certificates/claude-101.jpg", verify: "https://academy.claude.com/verify/b5fd2d094f3e8c731bdc0d353be3d606" },
         { category: "technology", skill: "AI fundamentals", name: "Introduction to AI", org: "Google · Coursera", year: "2026",
           desc: "Google's foundational course on artificial intelligence and how it is used in everyday work.",
           image: "certificates/google-intro-to-ai.jpg", verify: "https://coursera.org/verify/T8UUZX3IT0LW" },
