@@ -1675,3 +1675,55 @@ nav ul li a.active::after { width: 100%; }
         radial-gradient(80% 90% at 0% 0%, rgba(14, 165, 233, 0.14), transparent 60%),
         var(--o-card);
 }
+
+/* =====================================================================
+   ORAFDEV — launched flagship (top of Projects): stronger, breathing glow
+   ===================================================================== */
+.ofd.ofd--live {
+    margin: 0 0 clamp(64px, 9vw, 112px);
+    animation: ofdBreath 4.5s ease-in-out infinite;
+}
+@keyframes ofdBreath {
+    0%, 100% { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 0 1px rgba(56, 189, 248, 0.35), 0 0 40px -6px rgba(56, 189, 248, 0.55), 0 0 90px -20px rgba(124, 58, 237, 0.45); }
+    50%      { box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), 0 0 0 1px rgba(56, 189, 248, 0.7), 0 0 70px -4px rgba(56, 189, 248, 0.85), 0 0 140px -10px rgba(124, 58, 237, 0.65); }
+}
+/* a second light, counter-rotating in the logo's violet */
+.ofd-ring.ofd-ring--outer {
+    padding: 1.5px;
+    opacity: 0.85;
+    background: conic-gradient(from var(--ofd-a), transparent 0deg, transparent 230deg, rgba(124, 58, 237, 0.9) 290deg, #c4b5fd 305deg, rgba(124, 58, 237, 0.6) 320deg, transparent 360deg);
+    animation: ofdRing 11s linear infinite reverse;
+}
+.ofd--live .ofd-aurora i { opacity: 0.28; }
+.ofd--live .ofd-aurora i:nth-child(3) { background: #7c3aed; opacity: 0.22; }
+
+/* logo: clickable, brighter glow */
+a.ofd-stage { text-decoration: none; cursor: pointer; }
+.ofd--live .ofd-logo { animation: ofdLogoGlow 3.6s ease-in-out infinite alternate; transition: transform 0.6s var(--o-ease); }
+@keyframes ofdLogoGlow {
+    from { filter: brightness(1) drop-shadow(0 0 10px rgba(56, 189, 248, 0.45)) drop-shadow(0 0 26px rgba(124, 58, 237, 0.25)); }
+    to   { filter: brightness(1.12) drop-shadow(0 0 22px rgba(56, 189, 248, 0.85)) drop-shadow(0 0 48px rgba(124, 58, 237, 0.55)); }
+}
+a.ofd-stage:hover .ofd-logo { transform: scale(1.05); }
+.ofd--live .ofd-halo { background: radial-gradient(circle, rgba(56, 189, 248, 0.55), rgba(124, 58, 237, 0.25) 45%, transparent 70%); }
+
+/* glowing headline */
+.ofd--live .ofd-title { filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.45)); }
+
+/* "Live now" status */
+.ofd-status.ofd-status--live { color: #bbf7d0; background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.5); }
+.ofd-status--live .ofd-status-dot { background: var(--o-green); animation: ofdLive 1.6s ease-out infinite; }
+@keyframes ofdLive { from { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.75); } to { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); } }
+.ofd-badges .pj-tag--founder { margin: 0; }
+
+.ofd-cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 12px; }
+.ofd-cta .wbtn { min-height: 52px; padding: 0 28px; font-size: 1rem; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 0 30px -6px rgba(56, 189, 248, 0.9); }
+
+/* certificate links inside experience / volunteering cards */
+.xp-cert, .vol-cert { margin-top: 14px; }
+
+@media (prefers-reduced-motion: reduce) {
+    .ofd.ofd--live, .ofd--live .ofd-logo { animation: none; }
+}
+/* keep the description colour when a certificate link follows it */
+.vol-text p:not(.vol-role) { color: var(--o-ink-3); line-height: 1.75; }
